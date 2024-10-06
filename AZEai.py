@@ -35,7 +35,4 @@ if sentence:
     # Creating a sidebar to display sentiment scores
     st.sidebar.header("Sentiment Scores")
     st.sidebar.write(f"**Sentiment Interpretation:** {sentiment}")
-    st.sidebar.write(f"**Negative Score:** {sentiment_scores['neg']:.2f}")
-    st.sidebar.write(f"**Neutral Score:** {sentiment_scores['neu']:.2f}")
-    st.sidebar.write(f"**Positive Score:** {sentiment_scores['pos']:.2f}")
     st.sidebar.write(f"**Compound Score:** {sentiment_scores['compound']:.2f}")
