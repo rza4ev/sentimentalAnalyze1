@@ -9,7 +9,7 @@ nltk.download('vader_lexicon')
 sia = SentimentIntensityAnalyzer()
 
 # Streamlit user interface setup
-st.title('Sentiment Analysis with NLTK VADER')
+st.title('Sentiment Analysis with OPHRYS AI')
 sentence = st.text_input("Enter a sentence to analyze:")
 
 if sentence:
