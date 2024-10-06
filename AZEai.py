@@ -9,26 +9,29 @@ nltk.download('vader_lexicon')
 sia = SentimentIntensityAnalyzer()
 
 # Streamlit user interface setup
-st.title('Sentiment Analysis with NLTK VADER')
+st.title('Sentiment Analysis with OPHYRS AI)
 
-# Custom CSS to change background and header style
+# Custom CSS to change background and adjust text color
 st.markdown("""
 <style>
-    .reportview-container {
-        background: #2ca02c;
+    body {
+        color: #fff;
+        background-color: #2ca02c;
+    }
+    .stTextInput label {
+        color: #fff;
+    }
+    .css-1d391kg {
+        background-color: #2ca02c;
+    }
+    .st-bq {
+        background-color: #2ca02c;
+    }
+    .css-1aumxhk {
+        background-color: #2ca02c;
     }
     h1 {
-        color: white;
-        text-align: center;
-    }
-    .stTextInput>label {
-        color: white;
-    }
-    .css-2trqyj {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        color: #f0f0f0;
+        color: #fff;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -65,4 +68,5 @@ if sentence:
     st.sidebar.write(f"**Neutral Score:** {sentiment_scores['neu']:.2f}")
     st.sidebar.write(f"**Positive Score:** {sentiment_scores['pos']:.2f}")
     st.sidebar.write(f"**Compound Score:** {sentiment_scores['compound']:.2f}")
+
 
