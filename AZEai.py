@@ -2,44 +2,58 @@ import streamlit as st
 import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-# Ensure the VADER lexicon is available
+# Downloading the VADER lexicon if not already downloaded
 nltk.download('vader_lexicon')
 
-# Create the VADER sentiment analysis tool
+# Creating the VADER analysis tool
 sia = SentimentIntensityAnalyzer()
 
 # Streamlit user interface setup
 st.title('Sentiment Analysis with NLTK VADER')
+
+# Custom CSS to change background and header style
+st.markdown("""
+<style>
+    .reportview-container {
+        background: #2ca02c;
+    }
+    h1 {
+        color: white;
+        text-align: center;
+    }
+    .stTextInput>label {
+        color: white;
+    }
+    .css-2trqyj {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        color: #f0f0f0;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Adding a custom header
+st.markdown('### OPHYRS by A4TB')
+
 sentence = st.text_input("Enter a sentence to analyze:")
 
 if sentence:
     # Analyzing the sentiment of the input sentence
     sentiment_scores = sia.polarity_scores(sentence)
 
-    # Determining sentiment and generating appropriate recommendation
-    recommendation = ""
+    # Determining sentiment and appropriate recommendation
     if sentiment_scores['compound'] > 0.4:
         sentiment = "Positive 😀"
         recommendation = "We're happy you're feeling good! Thanks for using our sentiment analyzer."
     elif sentiment_scores['compound'] < -0.05:
         sentiment = "Negative 😞"
-        # Custom recommendations based on specific keywords
-        activities = {
-            'bike': "Biking trails are abundant in our area. Have you tried the scenic route by the lake?",
-            'hiking': "Hiking is a great way to unwind. Consider visiting the challenging trails in our national reserves.",
-            'camping': "There are several serene camping spots nearby. Perfect for a weekend getaway!"
-        }
-        for activity, activity_recommendation in activities.items():
-            if activity in sentence.lower():
-                recommendation = activity_recommendation
-                break
-        else:
-            recommendation = "It seems like you're having a tough time. Did you know about Gobustan National Park and its ancient rock carvings? It could be a refreshing place to visit!"
+        recommendation = "It seems like you're having a tough time. Did you know about Gobustan National Park and its ancient rock carvings? It could be a refreshing place to visit!"
     else:
         sentiment = "Neutral 😐"
         recommendation = "Thanks for using our sentiment analyzer. We hope you find this tool useful."
 
-    # Displaying the original sentence, sentiment, and recommendation
+    # Displaying the original sentence and sentiment
     st.write(f"Sentence: {sentence}")
     st.write(f"Sentiment: {sentiment}")
     st.write(recommendation)
@@ -51,3 +65,4 @@ if sentence:
     st.sidebar.write(f"**Neutral Score:** {sentiment_scores['neu']:.2f}")
     st.sidebar.write(f"**Positive Score:** {sentiment_scores['pos']:.2f}")
     st.sidebar.write(f"**Compound Score:** {sentiment_scores['compound']:.2f}")
+
