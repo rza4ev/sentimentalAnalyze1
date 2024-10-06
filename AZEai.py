@@ -22,7 +22,7 @@ if sentence:
         recommendation = "We're happy you're feeling good! Thanks for using our sentiment analyzer."
     elif sentiment_scores['compound'] < -0.05:
         sentiment = "Negative 😞"
-        if 'bicycle' in sentence.lower():  # Check if 'bicycle' is mentioned, case-insensitively
+        if 'bike' in sentence.lower():  # Check if 'bicycle' is mentioned, case-insensitively
             recommendation = "It seems like you're interested in outdoor activities. Why not explore the hiking areas next time?"
         else:
             recommendation = "It seems like you're having a tough time. Did you know about Gobustan National Park and its ancient rock carvings? It could be a refreshing place to visit!"
