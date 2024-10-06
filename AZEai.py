@@ -17,13 +17,22 @@ if sentence:
     sentiment_scores = sia.polarity_scores(sentence)
 
     # Determining sentiment and generating appropriate recommendation
+    recommendation = ""
     if sentiment_scores['compound'] > 0.4:
         sentiment = "Positive 😀"
         recommendation = "We're happy you're feeling good! Thanks for using our sentiment analyzer."
     elif sentiment_scores['compound'] < -0.05:
         sentiment = "Negative 😞"
-        if 'bike' in sentence.lower():  # Check if 'bicycle' is mentioned, case-insensitively
-            recommendation = "It seems like you're interested in outdoor activities. Why not explore the camping areas next time?"
+        # Custom recommendations based on specific keywords
+        activities = {
+            'bike': "Biking trails are abundant in our area. Have you tried the scenic route by the lake?",
+            'hiking': "Hiking is a great way to unwind. Consider visiting the challenging trails in our national reserves.",
+            'camping': "There are several serene camping spots nearby. Perfect for a weekend getaway!"
+        }
+        for activity, activity_recommendation in activities.items():
+            if activity in sentence.lower():
+                recommendation = activity_recommendation
+                break
         else:
             recommendation = "It seems like you're having a tough time. Did you know about Gobustan National Park and its ancient rock carvings? It could be a refreshing place to visit!"
     else:
