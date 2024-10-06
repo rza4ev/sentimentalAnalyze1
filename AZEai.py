@@ -9,7 +9,7 @@ nltk.download('vader_lexicon')
 sia = SentimentIntensityAnalyzer()
 
 # Streamlit user interface setup
-st.title('Sentiment Analysis with OPHYRS AI)
+st.title('Sentiment Analysis with OPHYRS AI')
 
 # Custom CSS to change background and adjust text color
 st.markdown("""
